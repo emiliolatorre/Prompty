@@ -1,8 +1,33 @@
 {
+  "name": "prompty",
+  "version": "1.0.0",
+  "description": "App de aprendizaje de prompts en chatgpt",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "client": "npm start --prefix client",
+    "client:build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run feed_db\" \"npm run client\"",
+    "feed_db": "node seed/prompts-seeder.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiliolatorre/Prompty.git"
+  },
+  "author": "Emilio Latorre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emiliolatorre/Prompty/issues"
+  },
+  "homepage": "https://github.com/emiliolatorre/Prompty#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
@@ -13,6 +38,7 @@
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4"
   }
