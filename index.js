@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require('./middlewares/morgan');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // const swaggerUi = require('swagger-ui-express');
@@ -42,7 +43,7 @@ app.use('/api/favorites', favoritesRoutes);
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(__dirname+'/client/dist/index.html'));
 });
 
 const server = app.listen(port, () => {

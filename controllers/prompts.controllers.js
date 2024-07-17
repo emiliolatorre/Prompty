@@ -80,7 +80,7 @@ const readPromptsController = async (req, res) => {
 const readPromptsByKeywordController = async (req, res) => {
     let prompts;
     try {
-        const keyword = req.body.keyword || null;
+        const keyword = req.query.keyword || null;
         prompts = await promptService.readPromptsByKeyword(keyword);
         res.status(200).json(prompts); // [] with the found prompts
     } catch (error) {
@@ -89,10 +89,7 @@ const readPromptsByKeywordController = async (req, res) => {
     }
 };
 // Prueba Postman (PENDING)
-// POST http://localhost:3000/api/prompts
-//{
-//     keyword: 'Sales'
-// }
+// GET http://localhost:3000/api/prompts/keyword?keyword=Sales
 
 const updatePromptController = async (req, res) => {
     // Validate request

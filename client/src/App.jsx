@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Header from './components/Header';
+import Main from './components/Main';
+// Importamos el contexto
+import { PromptsContext } from './context/PromptsContext'
+import { SeederContext } from './context/SeederContext'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [prompts, setPrompts] = useState('');
+  const [seeder, setSeeder] = useState(false);
+
+  const updatePrompts = (newPrompts) => {
+    setPrompts(newPrompts);
+  };
+
+  const promptsData = { prompts, updatePrompts }
+
+  const updateSeeder = (firstSeeder) => {
+    setSeeder(firstSeeder);
+  };
+
+  const seederData = { seeder, updateSeeder }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <PromptsContext.Provider value={promptsData}>
+    <SeederContext.Provider value={seederData}>
+    <BrowserRouter >
+        <Header />
+        <Main />
+      </BrowserRouter>
+      </SeederContext.Provider>
+      </PromptsContext.Provider>
     </>
   )
 }

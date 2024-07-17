@@ -103,7 +103,16 @@ const readPromptsByKeyword = async (keyword) => {
         const results = await Prompt.aggregate([
             { $unwind: "$prompts" },
             { $match: matchStage },
-            { $project: { _id: 0, "category": 1, "prompts.question": 1 } },
+            { $group: {
+                _id: { category: "$category", desc: "$desc" },
+                prompts: { $push: { id: "$prompts.id", title: "$prompts.title", question: "$prompts.question" } }
+            }},
+            { $project: {
+                _id: 0,
+                category: "$_id.category",
+                desc: "$_id.desc",
+                prompts: 1
+            }},
             { $limit: 10 }
         ]);
 
