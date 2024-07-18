@@ -8,7 +8,7 @@ import { Comment } from 'react-loader-spinner';
 const Chat = () => {
 
   const API_KEY = process.env.REACT_APP_OPENAI_KEY;
-  console.log(API_KEY)
+  console.log(API_KEY);
 
   // ESTADOS
   const [question, setQuestion] = useState('');
