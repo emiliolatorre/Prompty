@@ -1,4 +1,8 @@
+![portada](/assets/PromptyHeader.png)
 # Prompty
+Prompty es una aplicación fullstack diseñada para mejorar y entrenar la forma en que realizamos prompts a la IA, mediante prompts recomendadas por categoría o prompts personalizadas. La app permite a los usuarios filtrar las prompts recomendadas por categoría y por keyword, y permite realizar consultas a openAI y guardar los chats favoritos. Prompty esta desplegada con Render. [Presentacion de negocio](https://www.canva.com/design/DAGLVV45Oow/pAhHG-zd_XYpmuZ-_z10Lw/edit?utm_content=DAGLVV45Oow&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton "presentacion de negocio")
+
+
 
 
 ## Requerimientos

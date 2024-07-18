@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 import { Comment } from 'react-loader-spinner';
+import { HeaderContext } from '../../../context/HeaderContext';
 
 const Chat = () => {
 
@@ -14,7 +15,11 @@ const Chat = () => {
   const [question, setQuestion] = useState('');
   const [conversation, setConversation] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [savedChatId, setSavedChatId] = useState(null);
   console.log(question)
+
+  const { header, updateHeader } = useContext(HeaderContext);
 
   const location = useLocation();
   const dataItem = location.state;
@@ -28,7 +33,7 @@ const Chat = () => {
     }
   }, [dataItem]);
 
-  // Fetch OPEN AI API
+  // 1er Fetch OPEN AI API
   useEffect(() => {
     if (!question) return;
 
@@ -90,6 +95,7 @@ const Chat = () => {
 
   console.log(conversation)
 
+  // Next Fetch OPEN AI API
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newQuestion = e.target.name.value.trim();
@@ -142,12 +148,69 @@ const Chat = () => {
     e.target.reset();
   };
 
+  const incrementHeader = () => {
+    updateHeader(header + 1);
+  };
+
+  // Save as Fav Chat in SQL
+  const handleClick = e => {
+    postFavoriteChat();
+  };
+
+  console.log(favorite)
 
 
-  return <section className="container-chat">
+  const postFavoriteChat = async () => {
+    try {
+      const title = dataItem.title;
+      const chat = conversation;
+      if (!favorite) {
+        const newChat = {
+          title: title,
+          chat: chat
+        }
+        const savedChat = await axios.post(`http://localhost:3000/api/chats`, newChat);
+        const savedChatId = savedChat.data.items_created._id.toString();
 
-{conversation.length === 0 && !isLoading && (
-  <div style={{ marginLeft: '105px', marginTop: '10px', marginBottom: '0px' }}>
+        const newFav = {
+          email: 'emilio@gmail.com',
+          chat_id: savedChatId
+
+        }
+        await axios.post(`http://localhost:3000/api/favorites`, newFav);
+
+        // Actualizar el estado de favorites
+        setFavorite(true);
+        setSavedChatId(savedChatId);
+        console.log(newChat)
+        console.log(favorite)
+        incrementHeader()
+        alert('your Chat have been saved!')
+      } else {
+        const updatedChat = { title, chat };
+        console.log(updatedChat)
+        const savedChat = await axios.put(`http://localhost:3000/api/chats?id=${savedChatId}`, updatedChat);
+        console.log(savedChat)
+        alert('your saved Chat have been updated!')
+      }
+    }
+    catch (error) {
+      console.error('Fetch error in Filter by Category', error);
+      alert('start your chat to save!')
+    }
+
+  }
+
+  console.log(header)
+
+
+return <section className="container-chat">
+  <div className="divBtnLike">
+    <button className="btnLike" onClick={handleClick}><img className="iconLike" src="/like.png" alt="like" /> Save Chat</button>
+  </div>
+
+  {conversation.length === 0 && !isLoading && (
+    <div style={{ marginLeft: '66px', marginTop: '10px', marginBottom: '0px' }}>
       <Comment
         visible={true}
         height={50}
@@ -155,25 +218,24 @@ const Chat = () => {
         ariaLabel="comment-loading"
         color="#fff"
         backgroundColor="#5e6177"
-        style={{ marginLeft: '200px' }}
       />
-      </div>
-    )}
+    </div>
+  )}
 
-    {/* Renderizar conversación */}
-    <div>
-      {conversation.map((message, index) => (
-        <div key={index}>
-          <p className="chatUser">
-            <img className="iconUser" src="/user.png" alt="user" /> {message.user}
-          </p>
-          <p className="chatAssistant">
-            <img className="iconPrompty" src="/prompty.png" alt="prompty" /> {message.assistant}
-          </p>
-        </div>
-      ))}
-      {isLoading && (
-        <div style={{ marginLeft: '105px', marginTop: '10px', marginBottom: '0px' }}>
+  {/* Renderizar conversación */}
+  <div className="container-conversations">
+    {conversation.map((message, index) => (
+      <div className="container-conversations" key={index}>
+        <p className="chatUser">
+          <img className="iconUser" src="/user.png" alt="user" /> {message.user}
+        </p>
+        <p className="chatAssistant">
+          <img className="iconPrompty" src="/prompty.png" alt="prompty" /> {message.assistant}
+        </p>
+      </div>
+    ))}
+    {isLoading && (
+      <div style={{ marginLeft: '66px', marginTop: '10px', marginBottom: '0px' }}>
         <Comment
           visible={true}
           height={50}
@@ -181,18 +243,17 @@ const Chat = () => {
           ariaLabel="comment-loading"
           color="#fff"
           backgroundColor="#5e6177"
-          style={{ marginRight: '20px' }}
         />
-        </div>
-      )}
-    </div>
+      </div>
+    )}
+  </div>
 
-    <form onSubmit={handleSubmit} className="formCustomPrompt formChat">
-      <input type="text" name="name" placeholder="Send a meesage to Prompty" />
-      <button type="submit"><img className="sendIcon" src="/send.png" alt="search" /></button>
-    </form>
+  <form onSubmit={handleSubmit} className="formCustomPrompt formChat">
+    <input type="text" name="name" placeholder="Send a meesage to Prompty" />
+    <button type="submit"><img className="sendIcon" src="/send.png" alt="search" /></button>
+  </form>
 
-  </section>
+</section>
 };
 
 export default Chat;

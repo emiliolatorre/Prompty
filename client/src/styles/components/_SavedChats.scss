@@ -1,0 +1,21 @@
+.btnUserChat {
+    display: flex;
+    border: none;
+    border-radius: 5px;
+    background-color: #343540;
+    color: white;
+    padding: 9px 10px 9px 10px;
+    margin-top: 10px;
+    width: 170px;
+    font-size: 14px;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btnUserChat:hover {
+    background-color: #3d3e4b;
+}

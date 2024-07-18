@@ -1,7 +1,11 @@
+.home{
+    width: calc(100% - 40px);
+}
+
 .divBtnReset {
     display: flex;
     justify-content: flex-end;
-    margin-top: -35px;
+    margin-top: -45px;
 }
 
 .btnReset {

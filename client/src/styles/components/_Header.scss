@@ -1,0 +1,44 @@
+.header {
+    background-color: #202123;
+    color: white;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.promptsHeader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btnNewChat {
+    display: flex;
+    border: 1px solid rgb(94, 91, 91);
+    border-radius: 5px;
+    background-color: #202123;
+    color: white;
+    padding: 9px 10px 9px 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    min-width: 170px;
+    font-size: 14px;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.btnNewChat:hover {
+    background-color: #27282b;
+}
