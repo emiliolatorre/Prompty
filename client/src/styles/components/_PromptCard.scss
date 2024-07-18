@@ -1,0 +1,21 @@
+.cardP {
+    color: white;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 20px;
+}
+
+.promptCard {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #444654;
+    width: 33%;
+    border: none;
+    border-radius: 5px;
+}
+
+.promptCard:hover {
+    background-color: #494c57;
+}

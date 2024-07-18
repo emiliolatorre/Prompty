@@ -82,7 +82,7 @@ const Filter = ({ message }) => {
 
 
   // RETURN
-  return <section className="filter">
+  return <section className="section-filter">
 
     <form className="formCategory">
       <select multiple={true} name="multiplecategory" onChange={handleChange}>
@@ -95,7 +95,7 @@ const Filter = ({ message }) => {
 
     <form onSubmit={handleSubmit} className="formKeyword">
       <input type="text" name="name" placeholder="Search by keyword..." />
-      <button type="submit"><img className="searchIcon" src="/icons8-búsqueda-64.png" alt="search" /></button>
+      <button type="submit"><img className="sendIcon" src="/send.png" alt="search" /></button>
     </form>
 
   </section>

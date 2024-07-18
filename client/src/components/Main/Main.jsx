@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes, Navigate, Link } from 'react-router-dom'
 import Home from './Home'
 import Chat from './Chat'
 import Login from './Login'
@@ -7,7 +7,9 @@ import Register from './Register'
 
 const Main = () => {
   return <main className="main">
-    <h1>Prompty</h1>
+    <Link className="link-no-underline" to={'/'}>
+    <h1 className="h1-prompty">Prompty</h1>
+    </Link>
 
     <Routes>
       <Route path='/' element={<Home />} />

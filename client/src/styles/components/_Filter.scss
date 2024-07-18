@@ -1,0 +1,47 @@
+.section-filter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -29.5px;
+    margin-right: 59px;
+    gap: 28px;
+}
+
+.formCategory select[multiple] {
+    height: 30px;
+    padding: 4px 0 4px 10px;
+}
+
+.formCategory select[multiple]:focus,
+.formCategory select[multiple]:active {
+    height: auto;
+    margin-bottom: -66.5px;
+}
+
+.formKeyword {
+    display: flex;
+    align-items: center;
+}
+
+.formKeyword input {
+    height:  26px;
+    padding-left: 10px;
+    margin-right: 11px;
+}
+
+.formKeyword button {
+    height:  30px;
+    background-color: #0FA47F;
+    border: none;
+    border-radius: 3px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.formKeyword button:hover {
+    background-color: #009b74;
+
+}
+
+.sendIcon {
+    width: 16px;
+}

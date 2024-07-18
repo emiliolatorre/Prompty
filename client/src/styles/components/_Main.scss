@@ -1,0 +1,23 @@
+.main {
+    margin: 0px 20px;
+}
+
+body {
+    background-color: #343541;
+}
+
+.h1-prompty {
+    font-weight: 600;
+    color: white;
+}
+
+.link-no-underline {
+    text-decoration: none;
+    color: inherit;
+  }
+
+@media (min-width: 560px) {
+    .main {
+        margin: 0px 40px;
+    }
+  }

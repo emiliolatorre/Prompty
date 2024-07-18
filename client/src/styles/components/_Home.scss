@@ -1,0 +1,56 @@
+.divBtnReset {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -35px;
+}
+
+.btnReset {
+    height:  30px;
+    background-color: #c76132;
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.btnReset:hover {
+    background-color: #d15318;
+}
+
+.iconReset {
+    width: 22px;
+}
+
+.formCustomPrompt {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.formCustomPrompt input {
+    height:  43px;
+    padding-left: 14px;
+    flex: 1;
+    margin-left: 10px;
+    border: none;
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.formCustomPrompt button {
+    height: 43.3px;
+    background-color: #0FA47F;
+    border: none;
+    border-radius: 3px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.formCustomPrompt button:hover {
+    background-color: #009b74;
+
+}

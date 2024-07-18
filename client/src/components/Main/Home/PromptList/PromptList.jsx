@@ -21,7 +21,7 @@ const PromptList = ({ message = 0 }) => {
   //FUNCIONES
 
 const renderPromptCategories = () => {
-      if (prompts.length === 0 ) {
+      if (prompts.length == 0) {
         return message.map((item, i) =>
       <PromptCategory key={uuidv4()} dataItem={item} />
     );
@@ -35,13 +35,13 @@ const renderPromptCategories = () => {
   return <section className="promptList">
     {!loading ? renderPromptCategories() : <Comment
   visible={true}
-  height="80"
-  width="80"
+  height="50"
+  width="50"
   ariaLabel="comment-loading"
   wrapperStyle={{}}
   wrapperClass="comment-wrapper"
   color="#fff"
-  backgroundColor="#F4442E"
+  backgroundColor="#5e6177"
   />}
     </section>;
 };

@@ -50,8 +50,6 @@ const Home = () => {
     if (customSearch.split(" ").length > 3) {
       shortenedTitle += "...";
     }
-    
-    // const dataItem = 
 
     navigate('/chat', { state: {
       title: shortenedTitle,
@@ -65,15 +63,15 @@ const Home = () => {
 
   return <section className="home">
     <div className="divBtnReset">
-      <button onClick={resetPrompts} className="btnReset"><img className="iconReset" src="/icons8-cita-recurrente-64.png" alt="reset" /></button>
+      <button onClick={resetPrompts} className="btnReset"><img className="iconReset" src="/refresh.png" alt="reset" /></button>
     </div>
     <Filter message={message}/>
     {prompts.length === 0 ? <PromptList message={message} /> : <PromptList />}
 
     <form onSubmit={handleSubmit} className="formCustomPrompt">
-      <p>Custom Search</p>
-      <input type="text" name="name"/>
-      <button type="submit"><img className="searchIcon" src="/icons8-búsqueda-64.png" alt="search" /></button>
+      <h2 className="categoryTitle">Custom Search</h2>
+      <input type="text" name="name" placeholder="Send a meesage to Prompty..."/>
+      <button type="submit"><img className="sendIcon" src="/send.png" alt="search" /></button>
     </form>
 
   </section>;

@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 const PromptCard = ({dataItem}) => {
   console.log(dataItem)
   return <div className="promptCard">
-    <Link to={'/chat'} state={ dataItem }>
-    <p>{dataItem.question}</p>
+    <Link className="link-no-underline" to={'/chat'} state={ dataItem }>
+    <p className="cardP">{dataItem.question}</p>
     </Link>
   </div>
 };
