@@ -7,7 +7,7 @@ import { Comment } from 'react-loader-spinner';
 
 const Chat = () => {
 
-  const API_KEY = process.env.REACT_APP_OPENAI_KEY;
+  const API_KEY = 'sk-proj-xnaqVby1meEx3hTsnIQNT3BlbkFJPYBPXigeDZq8XSslmxSZ';
   console.log(API_KEY);
 
   // ESTADOS
