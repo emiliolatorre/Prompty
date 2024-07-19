@@ -9,8 +9,6 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express(); // Initialize server
-const port = 3000;
-// const port = process.env.PORT;
 
 // Documentación API
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -24,7 +22,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.json()); // Enable JSON reception on server
-app.use(express.static(path.join(__dirname, 'client/build'))); // Serve the static files from the React app
 
 // Routes
 // const webRoutes = require("./routes/web.routes"); // no hacen falta, van por React
@@ -41,13 +38,19 @@ app.use('/api/chats', chatsRoutes);
 app.use('/api/user', usersRoutes);
 app.use('/api/favorites', favoritesRoutes);
 
-// Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/dist/index.html'));
-});
 
-const server = app.listen(port, () => {
-    console.log(`Example app listening on http://localhost:${port}`);
+//* Serve static assets in production, must be at this location of this file
+if (process.env.NODE_ENV === 'production') {
+    //*Set static folder
+    app.use(express.static('client/dist'));
+
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html')));
+}
+
+const PORT = process.env.PORT || 5000;
+
+const server = app.listen(PORT, () => {
+    console.log(`Example app listening on http://localhost:${PORT}`);
 });
 
 module.exports = server;
