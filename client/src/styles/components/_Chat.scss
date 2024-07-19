@@ -1,16 +1,19 @@
+.container-chat {
+    width: calc(100% - 40px);
+}
+
 .formChat {
-    margin-left: 60px;
+    margin-left: 65px;
     margin-right: 80px;
 }
 
 .chatUser {
     color: white;
-    padding: 20px 80px;
+    padding: 20px 80px 20px 45px;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.5;
-    width: calc(100% + 80px); /* Ancho del contenedor más los márgenes izquierdo y derecho del main */
-    margin-left: -40px; /* Compensa el margen izquierdo del main */
+    line-height: 1.7;
+    margin-left: -40px;
     margin-right: -40px;
     box-sizing: border-box;
     display: flex;
@@ -19,12 +22,11 @@
 .chatAssistant {
     color: white;
     background-color: #444654;
-    padding: 20px 120px 20px 80px;
+    padding: 20px 80px 20px 42px;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.5;
-    width: calc(100% + 80px); /* Ancho del contenedor más los márgenes izquierdo y derecho del main */
-    margin-left: -40px; /* Compensa el margen izquierdo del main */
+    line-height: 1.7;
+    margin-left: -40px;
     margin-right: -40px;
     box-sizing: border-box;
     display: flex;
@@ -42,4 +44,34 @@
     height: 40px;
     border-radius: 5px;
     margin-right: 30px;
+}
+
+.divBtnLike {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnLike {
+    height:  32px;
+    background-color: #e43636;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0px 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-top: -50px;
+}
+
+.btnLike:hover {
+    background-color: #cf2929;
+
+}
+
+.iconLike {
+    width: 18px;
+    margin-right: 5px;
+    margin-bottom: -3px;
+    pointer-events: none;
 }

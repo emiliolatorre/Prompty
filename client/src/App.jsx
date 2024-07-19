@@ -5,11 +5,13 @@ import Main from './components/Main';
 // Importamos el contexto
 import { PromptsContext } from './context/PromptsContext'
 import { SeederContext } from './context/SeederContext'
+import { HeaderContext } from './context/HeaderContext'
 
 function App() {
 
   const [prompts, setPrompts] = useState('');
   const [seeder, setSeeder] = useState(false);
+  const [header, setHeader] = useState(0);
 
   const updatePrompts = (newPrompts) => {
     setPrompts(newPrompts);
@@ -23,15 +25,23 @@ function App() {
 
   const seederData = { seeder, updateSeeder }
 
+  const updateHeader = (refreshHeader) => {
+    setHeader(refreshHeader);
+  };
+
+  const headerData = { header, updateHeader }
+
   return (
     <>
-    <PromptsContext.Provider value={promptsData}>
-    <SeederContext.Provider value={seederData}>
-    <BrowserRouter >
-        <Header />
-        <Main />
-      </BrowserRouter>
-      </SeederContext.Provider>
+      <PromptsContext.Provider value={promptsData}>
+        <SeederContext.Provider value={seederData}>
+          <HeaderContext.Provider value={headerData}>
+            <BrowserRouter >
+              <Header />
+              <Main />
+            </BrowserRouter>
+          </HeaderContext.Provider>
+        </SeederContext.Provider>
       </PromptsContext.Provider>
     </>
   )
