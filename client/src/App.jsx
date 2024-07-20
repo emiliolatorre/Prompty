@@ -3,9 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
 // Importamos el contexto
-import { PromptsContext } from './context/PromptsContext'
-import { SeederContext } from './context/SeederContext'
-import { HeaderContext } from './context/HeaderContext'
+import { PromptsContext } from './context/PromptsContext';
+import { SeederContext } from './context/SeederContext';
+import { HeaderContext } from './context/HeaderContext';
 
 function App() {
 
