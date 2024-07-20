@@ -17,8 +17,8 @@ const Home = () => {
   //CONTEXTOS
   const { prompts, updatePrompts } = useContext(PromptsContext);
   const { seeder, updateSeeder } = useContext(SeederContext);
-  console.log(prompts)
-  console.log(seeder)
+  console.log(prompts);
+  console.log(seeder);
 
   //FUNCIONES
   const resetPrompts = () => {
@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
     const getSeeder = async () => {
       try {
-        const resp = await axios.get('http://localhost:3000/api/prompts');
+        const resp = await axios.get('https://prompty-4y5d.onrender.com/api/prompts');
         const jsonSeeder = resp.data;
 
         // LE PASAMOS pokemons AL PADRE Home

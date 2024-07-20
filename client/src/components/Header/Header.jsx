@@ -17,14 +17,14 @@ const Header = () => {
     const getSavedChats = async () => {
       try {
         const email = 'emilio@gmail.com'
-        const resp = await axios.get(`http://localhost:3000/api/favorites?email=${email}`);
+        const resp = await axios.get(`https://prompty-4y5d.onrender.com/api/favorites?email=${email}`);
         const chatsIds = resp.data;
         console.log(resp)
         console.log(chatsIds)
 
         const chatPromises = chatsIds.map(async (chat) => {
           const chatId = chat.chat_id;
-          const savedChat = await axios.get(`http://localhost:3000/api/chats?id=${chatId}`);
+          const savedChat = await axios.get(`https://prompty-4y5d.onrender.com/api/chats?id=${chatId}`);
           return savedChat.data[0];
         });
   

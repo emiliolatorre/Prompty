@@ -21,7 +21,7 @@ const Filter = ({ message }) => {
   
           // Iterar sobre cada categoría seleccionada
           for (const eachCategory of selectedCategories) {
-            const response = await axios.get(`http://localhost:3000/api/prompts?category=${eachCategory}`);
+            const response = await axios.get(`https://prompty-4y5d.onrender.com/api/prompts?category=${eachCategory}`);
             newPrompts.push(...response.data);
           }
   
@@ -55,7 +55,7 @@ const Filter = ({ message }) => {
       const getPromptsByKeyword = async () => {
         if (keyword.trim() !== '') {
           try {
-            const newKeyword = await axios.get(`http://localhost:3000/api/prompts/keyword?keyword=${keyword}`);
+            const newKeyword = await axios.get(`https://prompty-4y5d.onrender.com/api/prompts/keyword?keyword=${keyword}`);
             const newKeywordData = newKeyword.data
     
             // Actualizar el estado de prompts con todos los nuevos prompts obtenidos

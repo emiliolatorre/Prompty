@@ -169,7 +169,7 @@ const Chat = () => {
           title: title,
           chat: chat
         }
-        const savedChat = await axios.post(`http://localhost:3000/api/chats`, newChat);
+        const savedChat = await axios.post(`https://prompty-4y5d.onrender.com/api/chats`, newChat);
         const savedChatId = savedChat.data.items_created._id.toString();
 
         const newFav = {
@@ -177,7 +177,7 @@ const Chat = () => {
           chat_id: savedChatId
 
         }
-        await axios.post(`http://localhost:3000/api/favorites`, newFav);
+        await axios.post(`https://prompty-4y5d.onrender.com/api/favorites`, newFav);
 
         // Actualizar el estado de favorites
         setFavorite(true);
@@ -189,7 +189,7 @@ const Chat = () => {
       } else {
         const updatedChat = { title, chat };
         console.log(updatedChat)
-        const savedChat = await axios.put(`http://localhost:3000/api/chats?id=${savedChatId}`, updatedChat);
+        const savedChat = await axios.put(`https://prompty-4y5d.onrender.com/api/chats?id=${savedChatId}`, updatedChat);
         console.log(savedChat)
         alert('your saved Chat have been updated!')
       }
