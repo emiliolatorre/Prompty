@@ -35,11 +35,11 @@
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "pg": "^8.12.0",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "morgan": "^1.10.0",
     "nodemon": "^3.1.4"
   }
 }
