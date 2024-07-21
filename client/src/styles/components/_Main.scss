@@ -14,9 +14,14 @@ body {
 .divh1 {
     display: flex;
     justify-content: right;
-    margin-top: -14px;
+    margin-top: -26px;
     margin-bottom: 50px;
     margin-right: 15px;
+    height: auto;
+}
+
+.divh1 a{
+    height: auto;
 }
 
 .h1-prompty {
@@ -54,8 +59,8 @@ body {
     .divh1 {
         display: flex;
         justify-content: left;
-        margin-top: 0;
-        margin-bottom: 0;
+        margin-top: -18.5px;
+        margin-bottom: 0px;
         margin-right: 0;
     }
     
