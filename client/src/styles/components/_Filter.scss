@@ -27,6 +27,7 @@
 .formKeyword {
     display: flex;
     align-items: center;
+    margin-right: 65px;
 }
 
 .formKeyword input {
@@ -43,7 +44,6 @@
     border-radius: 3px;
     padding: 12px;
     cursor: pointer;
-    margin-right: 60px;
 }
 
 .formKeyword button:hover {
