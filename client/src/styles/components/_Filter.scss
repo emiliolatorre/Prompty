@@ -1,20 +1,15 @@
 .section-filter {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
     margin-top: -29.5px;
-    gap: 18px;
+    margin-right: 59px;
+    gap: 28px;
     margin-bottom: 40px;
 }
 
-.formCategory {
-    display: flex;
-    width: 100%;
-}
-
 .formCategory select[multiple] {
-    height: 40px;
+    height: 30px;
     padding: 4px 0 4px 10px;
-    flex: 1;
 }
 
 .formCategory select[multiple]:focus,
@@ -29,20 +24,18 @@
 }
 
 .formKeyword input {
-    height:  36px;
+    height:  26px;
     padding-left: 10px;
     margin-right: 11px;
-    flex: 1;
 }
 
 .formKeyword button {
-    height:  40px;
+    height:  30px;
     background-color: #0FA47F;
     border: none;
     border-radius: 3px;
-    padding: 12px;
+    padding: 7px;
     cursor: pointer;
-    margin-right: 60px;
 }
 
 .formKeyword button:hover {
@@ -52,55 +45,4 @@
 
 .sendIcon {
     width: 16px;
-}
-
-@media (min-width: 560px) {
-    .section-filter {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: -29.5px;
-        margin-right: 59px;
-        gap: 28px;
-        margin-bottom: 40px;
-    }
-    
-    .formCategory select[multiple] {
-        height: 30px;
-        padding: 4px 0 4px 10px;
-    }
-    
-    .formCategory select[multiple]:focus,
-    .formCategory select[multiple]:active {
-        height: auto;
-        margin-bottom: -66.5px;
-    }
-    
-    .formKeyword {
-        display: flex;
-        align-items: center;
-    }
-    
-    .formKeyword input {
-        height:  26px;
-        padding-left: 10px;
-        margin-right: 11px;
-    }
-    
-    .formKeyword button {
-        height:  30px;
-        background-color: #0FA47F;
-        border: none;
-        border-radius: 3px;
-        padding: 7px;
-        cursor: pointer;
-    }
-    
-    .formKeyword button:hover {
-        background-color: #009b74;
-    
-    }
-    
-    .sendIcon {
-        width: 16px;
-    }
 }
