@@ -1,6 +1,5 @@
 .category-container {
     margin-bottom: 30px;
-    flex-direction: column;
 }
 
 .categoryTitle {
@@ -8,22 +7,23 @@
     font-weight: 600;
     font-size: 19px;
     display: inline-block;
-    margin-right: auto;
+    margin-right: 10px;
     flex-shrink: 0;
 }
 
 .categoryData-container {
     display: flex;
     align-items: center;
-    flex-direction: column;
 }
 
 .categoryP-container {
-    display: block;
+    display: inline-flex;
     align-items: center;
     background-color: #5e6177;
-    margin-top: 15px;
-    margin-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -16px;
+    margin-bottom: -7px;
     border: none;
     border-radius: 5px;
     padding: 8px 12px;
@@ -42,19 +42,16 @@
     display: flex;
     margin-top: 20px;
     gap: 20px;
-    flex-direction: column;
 }
 
 .info-btn {
-    height:  31px;
+    height:  21px;
     background-color: #0FA47F;
     border: none;
     border-radius: 3px;
-    padding: 5.5px;
+    padding: 2.5px;
     cursor: pointer;
     flex-shrink: 0;
-    margin-top: -31px;
-    margin-left: auto;
 }
 
 .info-btn:hover {
@@ -63,74 +60,6 @@
 }
 
 .questionIcon {
-    width: 20px;
+    width: 16px;
     pointer-events: none;
-}
-
-@media (min-width: 560px) {
-    .category-container {
-        margin-bottom: 30px;
-    }
-    
-    .categoryTitle {
-        color: white;
-        font-weight: 600;
-        font-size: 19px;
-        display: inline-block;
-        margin-right: 10px;
-        flex-shrink: 0;
-    }
-    
-    .categoryData-container {
-        display: flex;
-        align-items: center;
-    }
-    
-    .categoryP-container {
-        display: inline-flex;
-        align-items: center;
-        background-color: #5e6177;
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-top: -16px;
-        margin-bottom: -7px;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 12px;
-    }
-    
-    .categoryP {
-        color: white;
-        font-weight: 400;
-        font-size: 12px;
-        white-space: wrap;
-        overflow: hidden;
-        line-height: 1.5;
-    }
-    
-    .prompt-div {
-        display: flex;
-        margin-top: 20px;
-        gap: 20px;
-    }
-    
-    .info-btn {
-        height:  21px;
-        background-color: #0FA47F;
-        border: none;
-        border-radius: 3px;
-        padding: 2.5px;
-        cursor: pointer;
-        flex-shrink: 0;
-    }
-    
-    .info-btn:hover {
-        background-color: #009b74;
-    
-    }
-    
-    .questionIcon {
-        width: 16px;
-        pointer-events: none;
-    }
 }
