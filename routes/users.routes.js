@@ -2,14 +2,14 @@ const usersController = require('../controllers/users.controllers');
 const router = require('express').Router();
 const { validateCreateUser, validateGetUsersByEmail, validateUpdateUser, validateDeleteUser } = require("../validators/users.validators");
 
-// POST http://localhost:3000/api/user
+// POST https://prompty-4y5d.onrender.com/api/user
 router.post("/", validateCreateUser, usersController.createUserController);
-// GET http://localhost:3000/api/user
-// http://localhost:3000/api/user?email=prueba@gmail.com
+// GET https://prompty-4y5d.onrender.com/api/user
+// https://prompty-4y5d.onrender.com/api/user?email=prueba@gmail.com
 router.get("/", validateGetUsersByEmail, usersController.readUsersController);
-// PUT http://localhost:3000/api/user
+// PUT https://prompty-4y5d.onrender.com/api/user
 router.put("/", validateUpdateUser, usersController.updateUserController);
-// DELETE http://localhost:3000/api/user?email=prueba2@gmail.com
+// DELETE https://prompty-4y5d.onrender.com/api/user?email=prueba2@gmail.com
 router.delete("/", validateDeleteUser, usersController.deleteUserController);
 
 router.post("/login", usersController.login);
