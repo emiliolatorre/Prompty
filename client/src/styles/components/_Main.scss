@@ -50,6 +50,14 @@ body {
         width: calc(100% - 40px);
         margin: 0px 40px;
     }
+
+    .divh1 {
+        display: flex;
+        justify-content: left;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
     
     .h1-prompty {
         font-weight: 600;

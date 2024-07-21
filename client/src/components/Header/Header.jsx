@@ -43,6 +43,7 @@ const Header = () => {
   useEffect(() => {
     const checkbox = document.getElementById('menu');
     const header = document.querySelector('.header');
+    const mainOverlay = document.querySelector('.main-overlay');
 
     const toggleHeaderBackground = () => {
         if (checkbox.checked) {
@@ -52,13 +53,22 @@ const Header = () => {
         }
     };
 
+    const closeHeader = () => {
+      checkbox.checked = false;
+      header.classList.remove('open');
+  };
+
     checkbox.addEventListener('change', toggleHeaderBackground);
-    return () => checkbox.removeEventListener('change', toggleHeaderBackground);
+    mainOverlay.addEventListener('click', closeHeader);
+    return () => {
+      checkbox.removeEventListener('change', toggleHeaderBackground);
+      mainOverlay.removeEventListener('click', closeHeader);
+    }
 }, []);
 
 
   // RETURN
-  return <header className="header">
+  return <><header className="header">
     <input type="checkbox" id="menu" />
     <label htmlFor="menu"><img className="iconBurguer" src="/burguer.png" alt="burger" width="25px" /></label>
     <section className="promptsHeader-container">
@@ -70,7 +80,8 @@ const Header = () => {
     ) : null}
     </section>
   <Nav />
-</header>;
+</header>
+<div className="main-overlay"></div>;</>
 };
 
 export default Header;

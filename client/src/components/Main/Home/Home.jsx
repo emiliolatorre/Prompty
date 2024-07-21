@@ -67,10 +67,8 @@ const Home = () => {
 
     <form onSubmit={handleSubmit} className="formCustomPrompt">
       <h2 className="categoryTitle">Custom Search</h2>
-      <div className="divFormCustomPrompt">
       <input type="text" name="name" placeholder="Send a meesage to Prompty..."/>
       <button type="submit"><img className="sendIcon" src="/send.png" alt="search" /></button>
-      </div>
     </form>
 
   </section>;
