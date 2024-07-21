@@ -9,33 +9,35 @@ import { HeaderContext } from '../../../context/HeaderContext';
 const Chat = () => {
 
   const API_KEY = import.meta.env.VITE_OPENAI;
-  console.log(API_KEY);
 
   // ESTADOS
-  const [question, setQuestion] = useState('');
-  const [conversation, setConversation] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [favorite, setFavorite] = useState(false);
-  const [savedChatId, setSavedChatId] = useState(null);
-  console.log(question)
+  const [question, setQuestion] = useState(''); // to confirm first prompt reception
+  const [conversation, setConversation] = useState([]); // to continously save the conversation
+  const [isLoading, setIsLoading] = useState(false); // to control the loader
+  const [favorite, setFavorite] = useState(false); // to confirm that the chat is already saved as favorite
+  const [savedChatId, setSavedChatId] = useState(null); // to save the chat object_id just created in mongodb
 
   const { header, updateHeader } = useContext(HeaderContext);
 
   const location = useLocation();
   const dataItem = location.state;
-  console.log(dataItem)
 
   // FUNCTIONS
 
   useEffect(() => {
-    if (dataItem && dataItem.question) {
-      setQuestion(dataItem.question);
+    if (dataItem) {
+      if (dataItem.source === 'SavedChats') {
+        setFavorite(true);
+        setConversation(dataItem.chat);
+      } else if (dataItem.question) {
+        setQuestion(dataItem.question);
+      }
     }
   }, [dataItem]);
 
   // 1er Fetch OPEN AI API
   useEffect(() => {
-    if (!question) return;
+    if (!question || favorite) return;
 
     const getAiResponse = async () => {
       setIsLoading(true);
@@ -61,7 +63,7 @@ const Chat = () => {
             }
           );
           const aiMessage = resp.data.choices[0].message.content.trim();
-          console.log(aiMessage);
+          console.log(`Open AI response: ${aiMessage}`);
 
           const interaction = {
             user: question,
@@ -93,7 +95,6 @@ const Chat = () => {
     getAiResponse()
   }, [question]);
 
-  console.log(conversation)
 
   // Next Fetch OPEN AI API
   const handleSubmit = async (e) => {
@@ -108,7 +109,7 @@ const Chat = () => {
       { role: 'assistant', content: message.assistant }
     ]);
     combinedMessages.push({ role: 'user', content: newQuestion });
-    console.log(combinedMessages)
+    console.log(`Context sent to OpenAI ${combinedMessages}`)
 
     try {
       setIsLoading(true);
@@ -129,7 +130,7 @@ const Chat = () => {
       );
 
       const aiMessage = resp.data.choices[0].message.content.trim();
-      console.log(aiMessage);
+      console.log(`Open AI response: ${aiMessage}`);
 
       const interaction = {
         user: newQuestion,
@@ -157,8 +158,6 @@ const Chat = () => {
     postFavoriteChat();
   };
 
-  console.log(favorite)
-
 
   const postFavoriteChat = async () => {
     try {
@@ -170,6 +169,7 @@ const Chat = () => {
           chat: chat
         }
         const savedChat = await axios.post(`https://prompty-4y5d.onrender.com/api/chats`, newChat);
+        console.log(`Saved Chat in MongoDB ${savedChat}`)
         const savedChatId = savedChat.data.items_created._id.toString();
 
         const newFav = {
@@ -177,20 +177,18 @@ const Chat = () => {
           chat_id: savedChatId
 
         }
-        await axios.post(`https://prompty-4y5d.onrender.com/api/favorites`, newFav);
+        const savedFavorite = await axios.post(`https://prompty-4y5d.onrender.com/api/favorites`, newFav);
+        console.log(`Saved Chat in PostgreSQL ${savedFavorite}`)
 
-        // Actualizar el estado de favorites
+        // Update de favorites state
         setFavorite(true);
         setSavedChatId(savedChatId);
-        console.log(newChat)
-        console.log(favorite)
         incrementHeader()
         alert('your Chat have been saved!')
       } else {
         const updatedChat = { title, chat };
-        console.log(updatedChat)
         const savedChat = await axios.put(`https://prompty-4y5d.onrender.com/api/chats?id=${savedChatId}`, updatedChat);
-        console.log(savedChat)
+        console.log(`Updated Chat in MongoDB ${savedChat}`)
         alert('your saved Chat have been updated!')
       }
     }
@@ -201,8 +199,8 @@ const Chat = () => {
 
   }
 
-  console.log(header)
 
+  // RETURN
 
 return <section className="container-chat">
   <div className="divBtnLike">

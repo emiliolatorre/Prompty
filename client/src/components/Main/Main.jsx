@@ -7,9 +7,11 @@ import Register from './Register'
 
 const Main = () => {
   return <main className="main">
+    <div className="divh1">
     <Link className="link-no-underline" to={'/'}>
     <h1 className="h1-prompty"><img className="iconPromptyH1" src="/prompty2.png" alt="prompty" /> Prompty</h1>
     </Link>
+    </div>
 
     <Routes>
       <Route path='/' element={<Home />} />

@@ -1,22 +1,53 @@
 .header {
-    background-color: #202123;
-    color: white;
-    width: 200px;
+    background-color: transparent;
+    color: transparent;
+    width: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+
+    // Esconde el input de tipo checkbox
+    &>input {
+        display: none;
+    }
+
+    &.open {
+        background-color: #202123;
+        color: white;
+        width: 200px;
+        height: 100%;
+
+        // Muestra el contenido del header cuando el checkbox está marcado
+        .promptsHeader-container,
+        Nav {
+            display: flex;
+        }
+    }
+
+    // Estilo por defecto del header
+    .promptsHeader-container,
+    Nav {
+        display: none; // Por defecto, mostrar todo
+    }
+
 }
 
 .promptsHeader-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
+    height: 100%;
+    align-items: center;
     box-sizing: border-box;
+}
+
+.promptsHeader-container a {
+    width: auto;
+    display: inline-block;
 }
 
 .btnNewChat {
@@ -41,4 +72,43 @@
 
 .btnNewChat:hover {
     background-color: #27282b;
+}
+
+.iconBurguer {
+    width: 20px;
+    margin-left: 13px;
+    margin-top: 13px;
+    margin-bottom: -8px;
+}
+
+
+
+
+@media (min-width: 560px) {
+
+    .header {
+        background-color: #202123;
+        color: white;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transition: all 0.3s ease;
+
+        // Mostrar el contenido del header en pantallas grandes
+        .promptsHeader-container,
+        Nav {
+            display: flex;
+        }
+
+        // Esconde el checkbox y su label en pantallas grandes
+        &>input,
+        &>label {
+            display: none;
+        }
+    }
 }

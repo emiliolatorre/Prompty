@@ -140,4 +140,4 @@ Este proyecto está bajo la Licencia MIT.
 
 ## Contacto
 - GitHub: [emiliolatorre](https://github.com/emiliolatorre)
-- Email: emiliolatorreguerra@example.com
+- Email: emiliolatorreguerra@gmail.com

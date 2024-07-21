@@ -19,8 +19,6 @@ const Header = () => {
         const email = 'emilio@gmail.com'
         const resp = await axios.get(`https://prompty-4y5d.onrender.com/api/favorites?email=${email}`);
         const chatsIds = resp.data;
-        console.log(resp)
-        console.log(chatsIds)
 
         const chatPromises = chatsIds.map(async (chat) => {
           const chatId = chat.chat_id;
@@ -31,7 +29,6 @@ const Header = () => {
         // Esperar a que todas las promesas se resuelvan
         const savedChats = await Promise.all(chatPromises);
   
-        console.log(savedChats);
         setUserChats(savedChats)
 
         
@@ -43,18 +40,32 @@ const Header = () => {
     getSavedChats();
   }, [header]);
 
-  console.log(userChats)
+  useEffect(() => {
+    const checkbox = document.getElementById('menu');
+    const header = document.querySelector('.header');
 
+    const toggleHeaderBackground = () => {
+        if (checkbox.checked) {
+            header.classList.add('open');
+        } else {
+            header.classList.remove('open');
+        }
+    };
 
+    checkbox.addEventListener('change', toggleHeaderBackground);
+    return () => checkbox.removeEventListener('change', toggleHeaderBackground);
+}, []);
 
 
   // RETURN
   return <header className="header">
+    <input type="checkbox" id="menu" />
+    <label htmlFor="menu"><img className="iconBurguer" src="/burguer.png" alt="burger" width="25px" /></label>
     <section className="promptsHeader-container">
       <Link to="/chat" className='link-no-underline'>
       <button className="btnNewChat">+ New chat</button>
       </Link>
-      {userChats? userChats.slice(0, 8).map((item, i) =>
+      {userChats? userChats.slice(0, 7).map((item, i) =>
       <SavedChats key={uuidv4()} dataItem={item} />
     ) : null}
     </section>

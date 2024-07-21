@@ -5,11 +5,18 @@ body {
 }
 
 .main {
-    padding-left: 200px;
     flex-grow: 1;
     overflow-y: auto;
     box-sizing: border-box;
-    width: calc(100% - 40px);
+    width: calc(100%);
+}
+
+.divh1 {
+    display: flex;
+    justify-content: right;
+    margin-top: -14px;
+    margin-bottom: 50px;
+    margin-right: 15px;
 }
 
 .h1-prompty {
@@ -29,7 +36,34 @@ body {
   }
 
 @media (min-width: 560px) {
+    body {
+        background-color: #343541;
+        margin: 0;
+        padding: 0;
+    }
+    
     .main {
+        padding-left: 200px;
+        flex-grow: 1;
+        overflow-y: auto;
+        box-sizing: border-box;
+        width: calc(100% - 40px);
         margin: 0px 40px;
     }
+    
+    .h1-prompty {
+        font-weight: 600;
+        color: white;
+        display: inline-block;
+    }
+    
+    .iconPromptyH1 {
+        width: 40px;
+        margin-bottom: -8.5px;
+    }
+    
+    .link-no-underline {
+        text-decoration: none;
+        color: inherit;
+      }
   }

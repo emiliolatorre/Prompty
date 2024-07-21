@@ -8,7 +8,11 @@
 
 .nav {
     margin-top: auto;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+}
+
+.nav ul {
+    margin-top: -3px;
 }
 
 .nav li {
@@ -42,3 +46,6 @@
     margin-right: 15px;
     margin-left: 2px;
 }
+
+@media (min-width: 560px) {
+  }
