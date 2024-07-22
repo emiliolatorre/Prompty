@@ -10,6 +10,7 @@ const Header = () => {
   // ESTADOS
   const [userChats, setUserChats] = useState('');
   const { header, updateHeader } = useContext(HeaderContext);
+  console.log(userChats)
 
 
   // FUNCIONES
@@ -81,7 +82,7 @@ const Header = () => {
     </section>
   <Nav />
 </header>
-<div className="main-overlay"></div>;</>
+<div className="main-overlay"></div></>
 };
 
 export default Header;

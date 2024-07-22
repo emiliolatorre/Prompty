@@ -21,6 +21,8 @@ const Chat = () => {
 
   const location = useLocation();
   const dataItem = location.state;
+  console.log(dataItem.id)
+  console.log(savedChatId)
 
   // FUNCTIONS
 
@@ -29,6 +31,7 @@ const Chat = () => {
       if (dataItem.source === 'SavedChats') {
         setFavorite(true);
         setConversation(dataItem.chat);
+        setSavedChatId(dataItem.id);
       } else if (dataItem.question) {
         setQuestion(dataItem.question);
       }
@@ -158,6 +161,8 @@ const Chat = () => {
     postFavoriteChat();
   };
 
+  console.log(favorite)
+  console.log(savedChatId)
 
   const postFavoriteChat = async () => {
     try {
@@ -187,6 +192,7 @@ const Chat = () => {
         alert('your Chat have been saved!')
       } else {
         const updatedChat = { title, chat };
+        console.log(`Updating Chat with ID: ${savedChatId}`);
         const savedChat = await axios.put(`https://prompty-4y5d.onrender.com/api/chats?id=${savedChatId}`, updatedChat);
         console.log(`Updated Chat in MongoDB ${savedChat}`)
         alert('your saved Chat have been updated!')
