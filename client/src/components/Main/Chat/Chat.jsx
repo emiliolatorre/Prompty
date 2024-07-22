@@ -53,7 +53,7 @@ const Chat = () => {
             {
               model: 'gpt-3.5-turbo',
               messages: [{ role: 'user', content: question }],
-              max_tokens: 150,
+              max_tokens: 350,
               temperature: 0.7,
             },
             {
@@ -119,7 +119,7 @@ const Chat = () => {
         {
           model: 'gpt-3.5-turbo',
           messages: combinedMessages,
-          max_tokens: 150,
+          max_tokens: 350,
           temperature: 0.7,
         },
         {
