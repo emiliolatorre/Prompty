@@ -1,0 +1,952 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Prompty - Documentación de endpoints de API",
+    "description": "Prompty es una aplicación fullstack diseñada para mejorar y entrenar la forma en que realizamos prompts a OpenAI, mediante prompts recomendadas por categoría o prompts personalizadas. La app permite a los usuarios filtrar las prompts recomendadas por categoría y por keyword, y permite realizar consultas a openAI y guardar los chats favoritos. Prompty esta desplegada con Render.\n\nLa aplicación soporta por el momento rol de usuario. La API proporciona rutas CRUD (Crear, Leer, Actualizar, Borrar) para gestionar usuarios, prompts, chats y chats favoritos, permitiendo una integración y manipulación completas de los datos a través de solicitudes HTTP.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "hola@prompty.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://prompty-4y5d.onrender.com/",
+      "description": "Servidor de producción"
+    }
+  ],
+  "tags": [
+    {
+      "name": "prompts",
+      "description": "Manage recommended prompts"
+    },
+    {
+      "name": "chats",
+      "description": "Manage chats with the AI"
+    },
+    {
+      "name": "users",
+      "description": "Manage Users and Admins"
+    },
+    {
+      "name": "favorites",
+      "description": "Manage user's favorites chats"
+    }
+  ],
+  "paths": {
+    "/api/prompts": {
+      "post": {
+        "tags": [
+          "prompts"
+        ],
+        "summary": "Create a recommended Prompt",
+        "description": "Create a recommended Prompt, only as an Admin",
+        "operationId": "postPrompt",
+        "requestBody": {
+          "description": "Create a recommended Prompt",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "404": {
+            "description": "Job not found"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "prompts"
+        ],
+        "summary": "Find all recommended Prompts",
+        "description": "Find all recommended Prompts.",
+        "operationId": "getPrompts",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "prompts"
+        ],
+        "summary": "Update a recommended prompt",
+        "description": "Update a recommended Prompt.",
+        "operationId": "updatePrompt",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Name of the category of Prompts that needs to be updated",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update a Prompt",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Prompt"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "prompts"
+        ],
+        "summary": "Delete a recommended Prompt",
+        "description": "Delete a recommended Prompt.",
+        "operationId": "deleteJob",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Name of category that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prompt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      }
+    },
+    "/api/chats": {
+      "post": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Create a Chat",
+        "description": "Create a Chat.",
+        "operationId": "postChat",
+        "requestBody": {
+          "description": "Create a Chat",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "404": {
+            "description": "Job not found"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Find all Chats",
+        "description": "Find all recommended Prompts.",
+        "operationId": "getChats",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Update a Chat",
+        "description": "Update a Chat.",
+        "operationId": "updateChat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id of the Chat that needs to be updated",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update a Chat",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Chat"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Delete a Chat",
+        "description": "Delete a Chat.",
+        "operationId": "deleteChat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of the Chat that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create a User",
+        "description": "Create a User with user role, only Prompty can create Admins",
+        "operationId": "postUser",
+        "requestBody": {
+          "description": "Create a User",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPost"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPost"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Items created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Find all Users",
+        "description": "Find all Users, both with role User and role Admin",
+        "operationId": "getUsers",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email of User whose Favorite you want to get",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update a User",
+        "description": "Update a User, both by the user itself or by Admins",
+        "operationId": "updateUser",
+        "requestBody": {
+          "description": "Update a User",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPut"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPut"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPut"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Items updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete a User",
+        "description": "Delete a User, by the user itself or by Admins.",
+        "operationId": "deleteUser",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or format"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/favorites": {
+      "post": {
+        "tags": [
+          "favorites"
+        ],
+        "summary": "Create a Favorite Chat",
+        "description": "Create a Favorite Chat of a User",
+        "operationId": "postFavorite",
+        "requestBody": {
+          "description": "Create a Favorite",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FavoritePost"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FavoritePost"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FavoritePost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Items created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid inputs or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "favorites"
+        ],
+        "summary": "Find all Favorites",
+        "description": "Find all Favorite Chats by users registered on the app.",
+        "operationId": "getFavorites",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email of User whose Favorite you want to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or format"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "favorites"
+        ],
+        "summary": "Delete a Favorite",
+        "description": "Delete a Favorite, by the user itself or by Admins.",
+        "operationId": "deleteFavorite",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email of User whose Favorite you want to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Favorite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Error in BBDD"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Prompt": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "format": "text",
+            "example": "Prompt_Test"
+          },
+          "desc": {
+            "type": "string",
+            "format": "text",
+            "example": "Prompt_Test description"
+          },
+          "prompts": {
+            "type": "array",
+            "items": {},
+            "example": [
+              {
+                "id": 1,
+                "title": "Craft a sales pitch",
+                "question": "Craft a compelling sales pitch for a new health and wellnewss product targeted at busy professionals."
+              }
+            ]
+          }
+        }
+      },
+      "Chat": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "format": "text",
+            "example": "Chat_Test"
+          },
+          "chat": {
+            "type": "array",
+            "items": {},
+            "example": [
+              {
+                "user": "Primer prompt, el de la card",
+                "assistant": "Respuesta primer prompt"
+              }
+            ]
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "format": "text",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "John123"
+          },
+          "role": {
+            "type": "string",
+            "format": "user / admin",
+            "example": "user"
+          },
+          "logged": {
+            "type": "boolean",
+            "example": true
+          },
+          "last_logged_day": {
+            "type": "string"
+          }
+        }
+      },
+      "UserPost": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "format": "text",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "John123"
+          }
+        }
+      },
+      "UserPut": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "format": "text",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "John123"
+          },
+          "role": {
+            "type": "string",
+            "format": "user / admin",
+            "example": "user"
+          },
+          "logged": {
+            "type": "boolean",
+            "example": true
+          },
+          "last_logged_day": {
+            "type": "string"
+          },
+          "old_email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoeold@gmail.com"
+          }
+        }
+      },
+      "Favorite": {
+        "type": "object",
+        "properties": {
+          "fav_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "int64"
+          },
+          "job_id": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "xml": {
+          "name": "tag"
+        }
+      },
+      "FavoritePost": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "int64"
+          },
+          "job_id": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "xml": {
+          "name": "tag"
+        }
+      }
+    },
+    "requestBodies": {
+      "Prompt": {
+        "description": "Prompt object to be added to the app",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Prompt"
+            }
+          }
+        }
+      },
+      "Chat": {
+        "description": "Chat object to be added to the app",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          }
+        }
+      },
+      "User": {
+        "description": "User/Admin object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "Favorite": {
+        "description": "Favorite object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Favorite"
+            }
+          }
+        }
+      }
+    }
+  }
+}
