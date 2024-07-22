@@ -21,8 +21,6 @@ const Chat = () => {
 
   const location = useLocation();
   const dataItem = location.state;
-  console.log(dataItem.id)
-  console.log(savedChatId)
 
   // FUNCTIONS
 
@@ -160,9 +158,6 @@ const Chat = () => {
   const handleClick = e => {
     postFavoriteChat();
   };
-
-  console.log(favorite)
-  console.log(savedChatId)
 
   const postFavoriteChat = async () => {
     try {

@@ -29,7 +29,7 @@ const Home = () => {
         const resp = await axios.get('https://prompty-4y5d.onrender.com/api/prompts');
         const jsonSeeder = resp.data;
 
-        // LE PASAMOS pokemons AL PADRE Home
+        // We pass the prompts of the seeder
         setMessage(jsonSeeder);
         updateSeeder(true);
       } catch (error) {
